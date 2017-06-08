@@ -10,6 +10,8 @@
 #define MobileLocation_Prefix_pch
 
 #import "Config.h"
+#import "UIColor+String.h"
+#import "UIView+Frame.h"
 
 #endif /* MobileLocation_Prefix_pch */
 

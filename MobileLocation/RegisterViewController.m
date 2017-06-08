@@ -9,13 +9,13 @@
 #import "RegisterViewController.h"
 
 @interface RegisterViewController ()
-//ea13e9fe9d74caf06f36f2d5af89b6e6
 @end
 
 @implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
 }
 

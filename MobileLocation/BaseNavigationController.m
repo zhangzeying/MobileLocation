@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
 
-    [[UINavigationBar appearance] setBarTintColor: NavgationBarColor];
+    [[UINavigationBar appearance] setBarTintColor: [UIColor colorWithHexString:@"3f9ed9"]];
     self.popGestureDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
 }

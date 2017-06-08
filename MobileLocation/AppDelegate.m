@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeTabBarController.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 @interface AppDelegate ()
 
 @end
@@ -18,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self buildKeyWindow];
+    [self initSDK];
     return YES;
 }
 
@@ -30,6 +32,12 @@
     [self.window makeKeyAndVisible];
 }
 
+- (void)initSDK {
+
+    //高德地图 开启 HTTPS
+    [[AMapServices sharedServices] setEnableHTTPS:YES];
+    [AMapServices sharedServices].apiKey = kAmapAppKey;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
