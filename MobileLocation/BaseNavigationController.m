@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
 
     [[UINavigationBar appearance] setBarTintColor: [UIColor colorWithHexString:@"3f9ed9"]];
+    [self.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.popGestureDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
 }

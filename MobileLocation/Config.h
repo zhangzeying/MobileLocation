@@ -14,7 +14,7 @@
 #define ScreenH [UIScreen mainScreen].bounds.size.height
 #define BSNotificationCenter [NSNotificationCenter defaultCenter]
 #define kAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
-
+#define baseurl @"http://139.199.8.67:3000"
 //高德地图
 #define kAmapAppKey @"ea13e9fe9d74caf06f36f2d5af89b6e6"
 

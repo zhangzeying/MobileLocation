@@ -18,8 +18,57 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // 调整SVProgressHUD的背景色和前景色
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [self buildKeyWindow];
     [self initSDK];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    manager.requestSerializer.timeoutInterval = 15.0f;
+    [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    NSString *urlStr = [Utils getUrl:@"/customerService/getInfo"];
+    [manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary *dict = responseObject;
+        if ([dict[@"flag"] integerValue] == 1) {
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString *customerMobile = dict[@"result"][@"mobile"];
+            NSString *customerQQ = dict[@"result"][@"qq"];
+            NSString *url1 = dict[@"result"][@"url"];
+            NSString *url2 = dict[@"result"][@"url2"];
+            if ([[userDefaults objectForKey:@"authorizationState"] isEqualToString:@"0"] || [userDefaults objectForKey:@"authorizationState"] == nil) {//未授权，更新客服信息
+                
+                [userDefaults setObject:customerMobile forKey:@"customerMobile"];
+                [userDefaults setObject:customerQQ forKey:@"customerQQ"];
+                [userDefaults setObject:url1 forKey:@"url1"];
+                [userDefaults setObject:url2 forKey:@"url2"];
+                [userDefaults synchronize];
+            }
+            
+        } else {
+            
+            [SVProgressHUD showErrorWithStatus:dict[@"msg"] maskType:SVProgressHUDMaskTypeBlack];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (error.code == 500) {
+            
+            [SVProgressHUD showErrorWithStatus:@"服务器异常" maskType:SVProgressHUDMaskTypeBlack];
+            
+        } else {
+            
+            [SVProgressHUD showErrorWithStatus:@"请求超时,请检查网络状态" maskType:SVProgressHUDMaskTypeBlack];
+        }
+        NSLog(@"%@",error);
+    }];
+    
+    
     return YES;
 }
 
@@ -30,6 +79,8 @@
     HomeTabBarController *loginVC = [[HomeTabBarController alloc]init];
     self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
+    
+    
 }
 
 - (void)initSDK {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A5F317A1EEBF78C002C484E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5F31791EEBF78C002C484E /* Utils.m */; };
+		5A5F317D1EEC00C4002C484E /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5F317C1EEC00C4002C484E /* ContactViewController.m */; };
 		5A6024031EE6E44B00BC7120 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6024021EE6E44B00BC7120 /* main.m */; };
 		5A6024061EE6E44B00BC7120 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6024051EE6E44B00BC7120 /* AppDelegate.m */; };
 		5A60240E1EE6E44B00BC7120 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A60240D1EE6E44B00BC7120 /* Assets.xcassets */; };
@@ -24,6 +26,9 @@
 		5A6024561EE6F62700BC7120 /* SystemSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6024551EE6F62700BC7120 /* SystemSettingViewController.m */; };
 		5A60245E1EE6F8B900BC7120 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A60245C1EE6F8B900BC7120 /* RegisterViewController.m */; };
 		5A60245F1EE6F8B900BC7120 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A60245D1EE6F8B900BC7120 /* RegisterViewController.xib */; };
+		5A7CD8EF1EEAF0E2008B87CB /* CustomNavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CD8EE1EEAF0E2008B87CB /* CustomNavTitleView.m */; };
+		5A80EDBD1EEBB88700D316A7 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A80EDBC1EEBB88700D316A7 /* LoginView.m */; };
+		5A80EDBF1EEBB89500D316A7 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A80EDBE1EEBB89500D316A7 /* LoginView.xib */; };
 		ADD4E11A886C0EF606067F8F /* libPods-MobileLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E15D457065ECB759019CE7 /* libPods-MobileLocation.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +51,10 @@
 
 /* Begin PBXFileReference section */
 		1781C9AA4AB5A674B44694D9 /* Pods-MobileLocation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileLocation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileLocation/Pods-MobileLocation.debug.xcconfig"; sourceTree = "<group>"; };
+		5A5F31781EEBF78C002C484E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		5A5F31791EEBF78C002C484E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		5A5F317B1EEC00C4002C484E /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		5A5F317C1EEC00C4002C484E /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		5A6023FE1EE6E44B00BC7120 /* MobileLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6024021EE6E44B00BC7120 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5A6024041EE6E44B00BC7120 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +91,11 @@
 		5A60245B1EE6F8B900BC7120 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		5A60245C1EE6F8B900BC7120 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		5A60245D1EE6F8B900BC7120 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		5A7CD8ED1EEAF0E2008B87CB /* CustomNavTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavTitleView.h; sourceTree = "<group>"; };
+		5A7CD8EE1EEAF0E2008B87CB /* CustomNavTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavTitleView.m; sourceTree = "<group>"; };
+		5A80EDBB1EEBB88700D316A7 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		5A80EDBC1EEBB88700D316A7 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		5A80EDBE1EEBB89500D316A7 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		C4E3B8B53C10921A154873FF /* Pods-MobileLocation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileLocation.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileLocation/Pods-MobileLocation.release.xcconfig"; sourceTree = "<group>"; };
 		E7E15D457065ECB759019CE7 /* libPods-MobileLocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileLocation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -194,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				5A60243A1EE6E4F600BC7120 /* Config.h */,
+				5A5F31781EEBF78C002C484E /* Utils.h */,
+				5A5F31791EEBF78C002C484E /* Utils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -215,6 +231,8 @@
 				5A60245B1EE6F8B900BC7120 /* RegisterViewController.h */,
 				5A60245C1EE6F8B900BC7120 /* RegisterViewController.m */,
 				5A60245D1EE6F8B900BC7120 /* RegisterViewController.xib */,
+				5A5F317B1EEC00C4002C484E /* ContactViewController.h */,
+				5A5F317C1EEC00C4002C484E /* ContactViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -222,6 +240,11 @@
 		5A60243E1EE6F1AD00BC7120 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5A7CD8ED1EEAF0E2008B87CB /* CustomNavTitleView.h */,
+				5A7CD8EE1EEAF0E2008B87CB /* CustomNavTitleView.m */,
+				5A80EDBB1EEBB88700D316A7 /* LoginView.h */,
+				5A80EDBC1EEBB88700D316A7 /* LoginView.m */,
+				5A80EDBE1EEBB89500D316A7 /* LoginView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -380,6 +403,7 @@
 			files = (
 				5A6024111EE6E44B00BC7120 /* LaunchScreen.storyboard in Resources */,
 				5A60240E1EE6E44B00BC7120 /* Assets.xcassets in Resources */,
+				5A80EDBF1EEBB89500D316A7 /* LoginView.xib in Resources */,
 				5A60245F1EE6F8B900BC7120 /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,13 +480,17 @@
 				5A6024391EE6E4DB00BC7120 /* UIView+Frame.m in Sources */,
 				5A6024431EE6F1F500BC7120 /* HomeTabBarController.m in Sources */,
 				5A60244D1EE6F5C500BC7120 /* PhoneLocationViewController.m in Sources */,
+				5A5F317A1EEBF78C002C484E /* Utils.m in Sources */,
+				5A80EDBD1EEBB88700D316A7 /* LoginView.m in Sources */,
 				5A6024561EE6F62700BC7120 /* SystemSettingViewController.m in Sources */,
 				5A6024481EE6F29800BC7120 /* BaseNavigationController.m in Sources */,
+				5A7CD8EF1EEAF0E2008B87CB /* CustomNavTitleView.m in Sources */,
 				5A6024501EE6F5F600BC7120 /* CallMonitorViewController.m in Sources */,
 				5A6024061EE6E44B00BC7120 /* AppDelegate.m in Sources */,
 				5A60245E1EE6F8B900BC7120 /* RegisterViewController.m in Sources */,
 				5A6024361EE6E4D500BC7120 /* UIColor+String.m in Sources */,
 				5A6024491EE6F29800BC7120 /* BaseViewController.m in Sources */,
+				5A5F317D1EEC00C4002C484E /* ContactViewController.m in Sources */,
 				5A6024531EE6F61600BC7120 /* MessageInterceptViewController.m in Sources */,
 				5A6024031EE6E44B00BC7120 /* main.m in Sources */,
 			);
