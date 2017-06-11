@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CustomNavTitleViewDelegate <NSObject>
+
+- (void)rightBtnClick:(NSString *)phoneStr;
+
+@end
 @interface CustomNavTitleView : UIView
 /** <##> */
 @property (nonatomic, weak)UIViewController *vc;
 /** <##> */
 @property(nonatomic,copy)NSString *btnTitle;
+@property (nonatomic,weak) id<CustomNavTitleViewDelegate> delegate;
 @end

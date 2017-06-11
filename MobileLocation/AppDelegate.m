@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "HomeTabBarController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
-@interface AppDelegate ()
+#import "NewFeatureController.h"
+@interface AppDelegate ()<AMapLocationManagerDelegate>
 
 @end
 
@@ -22,6 +23,7 @@
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.8]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [self buildKeyWindow];
+    [self checkIsShowNewFeature];
     [self initSDK];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -49,23 +51,10 @@
                 [userDefaults setObject:url2 forKey:@"url2"];
                 [userDefaults synchronize];
             }
-            
-        } else {
-            
-            [SVProgressHUD showErrorWithStatus:dict[@"msg"] maskType:SVProgressHUDMaskTypeBlack];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (error.code == 500) {
-            
-            [SVProgressHUD showErrorWithStatus:@"服务器异常" maskType:SVProgressHUDMaskTypeBlack];
-            
-        } else {
-            
-            [SVProgressHUD showErrorWithStatus:@"请求超时,请检查网络状态" maskType:SVProgressHUDMaskTypeBlack];
-        }
-        NSLog(@"%@",error);
     }];
     
     
@@ -76,10 +65,7 @@
 - (void)buildKeyWindow {
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    HomeTabBarController *loginVC = [[HomeTabBarController alloc]init];
-    self.window.rootViewController = loginVC;
     [self.window makeKeyAndVisible];
-    
     
 }
 
@@ -88,6 +74,71 @@
     //高德地图 开启 HTTPS
     [[AMapServices sharedServices] setEnableHTTPS:YES];
     [AMapServices sharedServices].apiKey = kAmapAppKey;
+    [self startLocation];
+    
+}
+
+- (void)checkIsShowNewFeature {
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    
+    NSString *lastVersion = [ud objectForKey:@"newFeatureVersion"]; //取出上次版本号
+    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]; //现在的版本号
+    
+    if ([version isEqualToString:lastVersion]) {//如果版本相同
+        
+        HomeTabBarController *tabVC = [[HomeTabBarController alloc]init];
+        self.window.rootViewController = tabVC;
+        
+    } else {//如果版本不相同
+        
+        NewFeatureController *newFeatureVC = [[NewFeatureController alloc]init];
+        self.window.rootViewController = newFeatureVC;
+        [ud setObject:version forKey:@"newFeatureVersion"];
+        [ud synchronize];
+        self.window.rootViewController = newFeatureVC;
+    }
+}
+
+- (void)startLocation {
+
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    if (username.length > 0) {
+        
+        self.locationManager = [[AMapLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.locationManager setPausesLocationUpdatesAutomatically:NO];
+        self.locationManager.distanceFilter = 50;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+            self.locationManager.allowsBackgroundLocationUpdates = YES;
+        }
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    BOOL isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
+    if (username.length > 0 && isLogin) {
+    
+        AFHTTPSessionManager *httpManager = [AFHTTPSessionManager manager];
+        httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+        httpManager.requestSerializer.timeoutInterval = 15.0f;
+        [httpManager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+        NSString *urlStr = [Utils getUrl:@"/users/realTimeUpdateLocation"];
+        NSDictionary *parameters = @{@"latitude": @(location.coordinate.latitude),
+                                     @"longitude":@(location.coordinate.longitude),
+                                     @"username":username?:@""};
+        [httpManager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }];
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

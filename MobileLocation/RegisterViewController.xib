@@ -42,7 +42,7 @@
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3zl-Xo-jfA">
                     <rect key="frame" x="0.0" y="109" width="375" height="1"/>
@@ -191,7 +191,7 @@
         </view>
     </objects>
     <resources>
-        <image name="checkbox" width="10" height="10"/>
-        <image name="checkbox_selected" width="10" height="10"/>
+        <image name="checkbox" width="20" height="20"/>
+        <image name="checkbox_selected" width="20" height="20"/>
     </resources>
 </document>

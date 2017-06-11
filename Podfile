@@ -8,4 +8,5 @@ pod 'SDWebImage'
 pod 'MJRefresh'
 pod 'AMap3DMap' #3D地图SDK
 pod 'AMapLocation' #定位SDK
+pod 'AMapSearch'
 end

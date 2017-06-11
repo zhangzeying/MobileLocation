@@ -25,6 +25,44 @@
     tableView.rowHeight = 50;
     [self.view addSubview:tableView];
     self.tableView = tableView;
+    NSString *customerMobile = [[NSUserDefaults standardUserDefaults] objectForKey:@"customerMobile"];
+    if (customerMobile.length == 0 && ([[[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] isEqualToString:@"0"] || [[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] == nil)) {
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+        manager.requestSerializer.timeoutInterval = 15.0f;
+        [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+        NSString *urlStr = [Utils getUrl:@"/customerService/getInfo"];
+        [manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            NSDictionary *dict = responseObject;
+            if ([dict[@"flag"] integerValue] == 1) {
+                
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                NSString *customerMobile = dict[@"result"][@"mobile"];
+                NSString *customerQQ = dict[@"result"][@"qq"];
+                NSString *url1 = dict[@"result"][@"url"];
+                NSString *url2 = dict[@"result"][@"url2"];
+                if ([[userDefaults objectForKey:@"authorizationState"] isEqualToString:@"0"] || [userDefaults objectForKey:@"authorizationState"] == nil) {//未授权，更新客服信息
+                    [userDefaults setObject:customerMobile forKey:@"customerMobile"];
+                    [userDefaults setObject:customerQQ forKey:@"customerQQ"];
+                    [userDefaults setObject:url1 forKey:@"url1"];
+                    [userDefaults setObject:url2 forKey:@"url2"];
+                    [userDefaults synchronize];
+                    [self.tableView reloadData];
+                }
+                
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+    
+    
+    
 }
 
 - (void)viewDidLayoutSubviews{
@@ -52,10 +90,10 @@
     contentLbl.font = [UIFont systemFontOfSize:15];
     if (indexPath.row == 0) {
         cell.textLabel.text = @"售前电话";
-        contentLbl.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"customerMobile"];
+        contentLbl.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"customerMobile"]?:@"";
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"售后QQ";
-        contentLbl.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"customerQQ"];
+        contentLbl.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"customerQQ"]?:@"";
     }
     [contentLbl sizeToFit];
     contentLbl.frame = CGRectMake(self.view.width - contentLbl.width - 40, 0, contentLbl.width, contentLbl.height);

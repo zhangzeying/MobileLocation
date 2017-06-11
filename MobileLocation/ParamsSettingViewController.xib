@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,7 +17,308 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3w-8m-0k5">
+                    <rect key="frame" x="20" y="80" width="35" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="3dm-iw-uDO"/>
+                        <constraint firstAttribute="height" constant="21" id="Ujc-Wc-xEd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="监听" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUW-bL-sKp">
+                    <rect key="frame" x="20" y="215" width="35" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="FIS-e5-8zN"/>
+                        <constraint firstAttribute="width" constant="35" id="IHb-zM-DBI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拦截" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4o-YU-AMH">
+                    <rect key="frame" x="20" y="350" width="35" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="Vei-hi-GEg"/>
+                        <constraint firstAttribute="height" constant="21" id="d1w-80-7ep"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDk-Pn-Y6I">
+                    <rect key="frame" x="20" y="116" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="Cx3-r7-v1R"/>
+                        <constraint firstAttribute="height" constant="22" id="xLo-e8-vYO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="网络定位" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="kct-PS-jVh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJ4-vu-1ED">
+                    <rect key="frame" x="115" y="116" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="YKz-M8-icE"/>
+                        <constraint firstAttribute="width" constant="90" id="hId-Hm-Mbv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="GPS定位" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="o4k-CK-p7u"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBT-1n-7NK">
+                    <rect key="frame" x="210" y="116" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="Kgd-89-PaP"/>
+                        <constraint firstAttribute="width" constant="90" id="eUl-tz-NKr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="基站定位" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="2m5-Oo-WOh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaY-bF-Zm4">
+                    <rect key="frame" x="20" y="251" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="BUa-PP-DLK"/>
+                        <constraint firstAttribute="height" constant="22" id="FEu-zk-mEY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="流畅" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="gVJ-0c-eMw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjO-Tr-mUQ">
+                    <rect key="frame" x="20" y="386" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="2O1-NH-9xj"/>
+                        <constraint firstAttribute="width" constant="90" id="I5H-ob-Qbg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                    <state key="normal" title="默认拦截" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="BBc-fu-Oet"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trW-zj-Plo">
+                    <rect key="frame" x="115" y="386" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="QoO-jz-6fQ"/>
+                        <constraint firstAttribute="width" constant="90" id="Xc6-ou-L0G"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="复制模式" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="ujQ-8y-AkJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ra-n5-Gyd">
+                    <rect key="frame" x="115" y="251" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="4Ne-FN-K6E"/>
+                        <constraint firstAttribute="height" constant="22" id="uBq-pM-zSz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="高清" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="tVo-n7-7lt"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVn-2D-6fE">
+                    <rect key="frame" x="210" y="251" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="Kr9-sJ-qZB"/>
+                        <constraint firstAttribute="width" constant="90" id="sI5-6i-fvN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="降噪" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="KgV-Z9-ha0"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s16-WG-ttY">
+                    <rect key="frame" x="20" y="153" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="Lan-GN-ltW"/>
+                        <constraint firstAttribute="width" constant="90" id="dum-xz-fUT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="混合定位" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="Q2y-9j-jgB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoG-d6-XmO">
+                    <rect key="frame" x="115" y="153" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="Vbg-fj-dii"/>
+                        <constraint firstAttribute="height" constant="22" id="bCq-QH-OBP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="2D地图" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="R5E-ST-bYO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zc3-m0-pD4">
+                    <rect key="frame" x="20" y="288" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="69w-gx-yBz"/>
+                        <constraint firstAttribute="height" constant="22" id="PUL-tV-G7c"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="时长显示" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="uoT-j5-1cA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eu6-Fs-byN">
+                    <rect key="frame" x="115" y="288" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="C8T-c1-3nj"/>
+                        <constraint firstAttribute="width" constant="90" id="oRo-Ld-chn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="号码显示" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="Ywx-mY-ovy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYd-Na-Va2">
+                    <rect key="frame" x="210" y="288" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="GHN-Xp-kIC"/>
+                        <constraint firstAttribute="width" constant="90" id="RWn-xr-JE8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="时间显示" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="Cfg-rt-khH"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmL-RH-Xif">
+                    <rect key="frame" x="210" y="153" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="gvE-6D-cLz"/>
+                        <constraint firstAttribute="height" constant="22" id="qlH-9f-vF7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="卫星地图" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="sAk-HI-4EJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8p-nK-z0b">
+                    <rect key="frame" x="210" y="386" width="90" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="Hq4-gG-9hR"/>
+                        <constraint firstAttribute="height" constant="22" id="vzC-0B-Uvp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="拦截模式" image="checkbox">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="checkBoxClick:" destination="-1" eventType="touchUpInside" id="QAg-1z-Eu3"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zaY-bF-Zm4" firstAttribute="leading" secondItem="nUW-bL-sKp" secondAttribute="leading" id="1hs-df-hkb"/>
+                <constraint firstItem="iVn-2D-6fE" firstAttribute="centerY" secondItem="0Ra-n5-Gyd" secondAttribute="centerY" id="2MD-Ij-Wi2"/>
+                <constraint firstItem="Eu6-Fs-byN" firstAttribute="leading" secondItem="Zc3-m0-pD4" secondAttribute="trailing" constant="5" id="7DW-i0-7OX"/>
+                <constraint firstItem="Zc3-m0-pD4" firstAttribute="top" secondItem="zaY-bF-Zm4" secondAttribute="bottom" constant="15" id="Aw5-tU-aZe"/>
+                <constraint firstItem="C3w-8m-0k5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="BEM-zc-ncB"/>
+                <constraint firstItem="s16-WG-ttY" firstAttribute="leading" secondItem="zDk-Pn-Y6I" secondAttribute="leading" id="DGT-eO-yaw"/>
+                <constraint firstItem="a8p-nK-z0b" firstAttribute="leading" secondItem="trW-zj-Plo" secondAttribute="trailing" constant="5" id="MJJ-Jx-Idd"/>
+                <constraint firstItem="iVn-2D-6fE" firstAttribute="leading" secondItem="0Ra-n5-Gyd" secondAttribute="trailing" constant="5" id="Nq7-cs-lly"/>
+                <constraint firstItem="LmL-RH-Xif" firstAttribute="leading" secondItem="FoG-d6-XmO" secondAttribute="trailing" constant="5" id="Ofb-Wa-6GD"/>
+                <constraint firstItem="vJ4-vu-1ED" firstAttribute="leading" secondItem="zDk-Pn-Y6I" secondAttribute="trailing" constant="5" id="PVL-VT-k8l"/>
+                <constraint firstItem="e4o-YU-AMH" firstAttribute="top" secondItem="Zc3-m0-pD4" secondAttribute="bottom" constant="40" id="Rge-2i-lUP"/>
+                <constraint firstItem="LmL-RH-Xif" firstAttribute="centerY" secondItem="FoG-d6-XmO" secondAttribute="centerY" id="S5I-gO-Hxp"/>
+                <constraint firstItem="zDk-Pn-Y6I" firstAttribute="leading" secondItem="C3w-8m-0k5" secondAttribute="leading" id="as2-gP-I3Q"/>
+                <constraint firstItem="nUW-bL-sKp" firstAttribute="top" secondItem="s16-WG-ttY" secondAttribute="bottom" constant="40" id="bMC-zZ-v1R"/>
+                <constraint firstItem="zDk-Pn-Y6I" firstAttribute="top" secondItem="C3w-8m-0k5" secondAttribute="bottom" constant="15" id="bjr-tB-oHT"/>
+                <constraint firstItem="0Ra-n5-Gyd" firstAttribute="leading" secondItem="zaY-bF-Zm4" secondAttribute="trailing" constant="5" id="dKz-lk-vYA"/>
+                <constraint firstItem="0Ra-n5-Gyd" firstAttribute="centerY" secondItem="zaY-bF-Zm4" secondAttribute="centerY" id="f43-I0-1o5"/>
+                <constraint firstItem="jYd-Na-Va2" firstAttribute="leading" secondItem="Eu6-Fs-byN" secondAttribute="trailing" constant="5" id="gON-Ro-qa0"/>
+                <constraint firstItem="trW-zj-Plo" firstAttribute="leading" secondItem="UjO-Tr-mUQ" secondAttribute="trailing" constant="5" id="j3o-AT-sjn"/>
+                <constraint firstItem="jYd-Na-Va2" firstAttribute="centerY" secondItem="Eu6-Fs-byN" secondAttribute="centerY" id="jjE-HE-xoD"/>
+                <constraint firstItem="Eu6-Fs-byN" firstAttribute="centerY" secondItem="Zc3-m0-pD4" secondAttribute="centerY" id="jtL-NB-fxO"/>
+                <constraint firstItem="Zc3-m0-pD4" firstAttribute="leading" secondItem="zaY-bF-Zm4" secondAttribute="leading" id="kfT-oE-iw5"/>
+                <constraint firstItem="s16-WG-ttY" firstAttribute="top" secondItem="zDk-Pn-Y6I" secondAttribute="bottom" constant="15" id="l8b-No-gL4"/>
+                <constraint firstItem="FoG-d6-XmO" firstAttribute="centerY" secondItem="s16-WG-ttY" secondAttribute="centerY" id="mLM-cv-wc9"/>
+                <constraint firstItem="SBT-1n-7NK" firstAttribute="leading" secondItem="vJ4-vu-1ED" secondAttribute="trailing" constant="5" id="n4m-fz-aVB"/>
+                <constraint firstItem="C3w-8m-0k5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="rvK-M9-RPR"/>
+                <constraint firstItem="e4o-YU-AMH" firstAttribute="leading" secondItem="nUW-bL-sKp" secondAttribute="leading" id="urQ-c6-eES"/>
+                <constraint firstItem="UjO-Tr-mUQ" firstAttribute="leading" secondItem="e4o-YU-AMH" secondAttribute="leading" id="v16-Uk-ck3"/>
+                <constraint firstItem="SBT-1n-7NK" firstAttribute="centerY" secondItem="vJ4-vu-1ED" secondAttribute="centerY" id="vYf-zn-WKW"/>
+                <constraint firstItem="nUW-bL-sKp" firstAttribute="leading" secondItem="C3w-8m-0k5" secondAttribute="leading" id="vnu-vp-S6M"/>
+                <constraint firstItem="FoG-d6-XmO" firstAttribute="leading" secondItem="s16-WG-ttY" secondAttribute="trailing" constant="5" id="vqp-Sg-fqr"/>
+                <constraint firstItem="trW-zj-Plo" firstAttribute="centerY" secondItem="UjO-Tr-mUQ" secondAttribute="centerY" id="vrK-bu-kqS"/>
+                <constraint firstItem="UjO-Tr-mUQ" firstAttribute="top" secondItem="e4o-YU-AMH" secondAttribute="bottom" constant="15" id="wa1-uy-X4s"/>
+                <constraint firstItem="zaY-bF-Zm4" firstAttribute="top" secondItem="nUW-bL-sKp" secondAttribute="bottom" constant="15" id="y37-lk-r7Y"/>
+                <constraint firstItem="vJ4-vu-1ED" firstAttribute="centerY" secondItem="zDk-Pn-Y6I" secondAttribute="centerY" id="zdg-wj-dh0"/>
+                <constraint firstItem="a8p-nK-z0b" firstAttribute="centerY" secondItem="trW-zj-Plo" secondAttribute="centerY" id="zgI-zT-EiX"/>
+            </constraints>
+            <point key="canvasLocation" x="232" y="-304"/>
         </view>
     </objects>
+    <resources>
+        <image name="checkbox" width="20" height="20"/>
+        <image name="checkbox_selected" width="20" height="20"/>
+    </resources>
 </document>

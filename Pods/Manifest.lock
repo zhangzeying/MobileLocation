@@ -19,6 +19,8 @@ PODS:
   - AMapFoundation (1.3.3)
   - AMapLocation (2.2.2):
     - AMapFoundation (~> 1.3)
+  - AMapSearch (4.4.1):
+    - AMapFoundation (~> 1.2)
   - IQKeyboardManager (3.3.5)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.12)
@@ -31,6 +33,7 @@ DEPENDENCIES:
   - AFNetworking
   - AMap3DMap
   - AMapLocation
+  - AMapSearch
   - IQKeyboardManager
   - MJExtension
   - MJRefresh
@@ -42,12 +45,13 @@ SPEC CHECKSUMS:
   AMap3DMap: 0b1263f9e58d6f96df145c9d5012987aa13f67d9
   AMapFoundation: c086329a1f19afec00e4c197863665235eb43dc2
   AMapLocation: e3390d00210f088a8ba5d6a04f135c2116a39581
+  AMapSearch: 16a50b493ad419e8b6b81bafdeca7570db52f28e
   IQKeyboardManager: 128bcb96b3ec03ff87942cdd7fa7f44491aa3d08
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
-PODFILE CHECKSUM: 322c8c7709009144606499b89d96c71de95e8fa5
+PODFILE CHECKSUM: e23e50f6e4ebc1e582063b9fb527c9af7d37952b
 
 COCOAPODS: 1.2.0.beta.3

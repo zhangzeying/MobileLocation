@@ -15,7 +15,9 @@
 /** <##> */
 @property (nonatomic, weak)UIView *dropDownMenuView;
 /** <##> */
-@property (nonatomic, weak)UIButton *locationBtn;
+@property (nonatomic, weak)UIButton *rightBtn;
+/** <##> */
+@property (nonatomic, weak)UITextField *phoneTxt;
 @end
 
 @implementation CustomNavTitleView
@@ -46,31 +48,35 @@
         [self addSubview:addressBookBtn];
         
         
-        UIButton *locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        locationBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        locationBtn.frame = CGRectMake(self.width - 82, 0, 70, self.height);
-        [self addSubview:locationBtn];
-        self.locationBtn = locationBtn;
+        UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        rightBtn.frame = CGRectMake(self.width - 82, 0, 70, self.height);
+        [self addSubview:rightBtn];
+        self.rightBtn = rightBtn;
         
         
         UIView *line = [[UIView alloc]init];
         line.backgroundColor = [UIColor whiteColor];
-        line.frame = CGRectMake(CGRectGetMaxX(addressBookBtn.frame)+2, 34, locationBtn.x - CGRectGetMaxX(addressBookBtn.frame)-2, 1);
+        line.frame = CGRectMake(CGRectGetMaxX(addressBookBtn.frame)+2, 34, rightBtn.x - CGRectGetMaxX(addressBookBtn.frame)-2, 1);
         [self addSubview:line];
         
         UITextField *phoneTxt = [[UITextField alloc]init];
         phoneTxt.placeholder = @"请输入号码";
+        [phoneTxt setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
         phoneTxt.font = [UIFont systemFontOfSize:16];
         phoneTxt.textColor = [UIColor whiteColor];
+        phoneTxt.keyboardType = UIKeyboardTypeNumberPad;
         phoneTxt.frame = CGRectMake(line.x, 10, line.width, 20);
         [self addSubview:phoneTxt];
+        self.phoneTxt = phoneTxt;
     }
     return self;
 }
 
 - (void)setBtnTitle:(NSString *)btnTitle {
 
-    [self.locationBtn setTitle:btnTitle forState:UIControlStateNormal];
+    [self.rightBtn setTitle:btnTitle forState:UIControlStateNormal];
 }
 
 - (void)dropDownClick:(UIButton *)sender {
@@ -148,8 +154,26 @@
     [self dropDownClick:self.dropMenuBtn];
 }
 
+- (void)rightBtnClick {
+
+    self.phoneTxt.text = [self.phoneTxt.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [self.phoneTxt resignFirstResponder];
+    if (self.phoneTxt.text.length == 0) {
+        
+        [SVProgressHUD showErrorWithStatus:@"号码不能为空" maskType:SVProgressHUDMaskTypeBlack];
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(rightBtnClick:)]) {
+        
+        [self.delegate rightBtnClick:self.phoneTxt.text];
+    }
+}
+
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
     
-    
+    CNPhoneNumber *phoneNumer = contactProperty.value;
+    self.phoneTxt.text = phoneNumer.stringValue;
+    self.phoneTxt.text = [self.phoneTxt.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 @end

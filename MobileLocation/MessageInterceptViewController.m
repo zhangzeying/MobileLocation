@@ -9,9 +9,12 @@
 #import "MessageInterceptViewController.h"
 #import "CustomNavTitleView.h"
 #import "MJRefresh.h"
-@interface MessageInterceptViewController ()
+#import "AuthorizationViewController.h"
+@interface MessageInterceptViewController ()<CustomNavTitleViewDelegate>
 /** <##> */
 @property (nonatomic, weak)UITableView *tableView;
+/** <##> */
+@property (nonatomic, weak)UIImageView *image;
 @end
 
 @implementation MessageInterceptViewController
@@ -22,10 +25,15 @@
     CustomNavTitleView *titleView = [[CustomNavTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
     titleView.vc = self;
     titleView.btnTitle = @"开始拦截";
+    titleView.delegate = self;
     self.navigationItem.titleView = titleView;
     
     UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+    tapGesture.numberOfTapsRequired = 1;
+    [tableView addGestureRecognizer:tapGesture];
     [self.view addSubview:tableView];
     
     UIView *bgView = [[UIView alloc]init];
@@ -46,14 +54,69 @@
     tableView.mj_header = header;
     
     self.tableView = tableView;
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"示例" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
+    btn.backgroundColor = [UIColor colorWithHexString:@"5a585a"];
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(self.view.width - 80, self.view.height - 15 - 80, 80, 40);
+    [self.view addSubview:btn];
 }
 
 - (void)loadNewData {
     
+    [SVProgressHUD show];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD showImage:nil status:@"暂无最新数据"];
         [self.tableView.mj_header endRefreshing];
     });
 }
+
+- (void)btnClick {
+    
+    if (self.image == nil) {
+        
+        UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height - 120 - 64)];
+        image.userInteractionEnabled = YES;
+        image.image = [UIImage imageNamed:@"message_Intercept_image"];
+        [self.view addSubview:image];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+        tapGesture.numberOfTapsRequired = 1;
+        [image addGestureRecognizer:tapGesture];
+        self.image = image;
+        
+    } else {
+        
+        [self.image removeFromSuperview];
+        self.image = nil;
+    }
+}
+
+- (void)tapClick {
+    
+    if (self.image) {
+        
+        [self.image removeFromSuperview];
+        self.image = nil;
+    }
+}
+
+- (void)rightBtnClick:(NSString *)phoneStr {
+    
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] isEqualToString:@"0"]) {
+        
+        AuthorizationViewController *authorizationVC = [[AuthorizationViewController alloc]init];
+        authorizationVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:authorizationVC animated:YES];
+        
+    } else {
+        
+        [SVProgressHUD showImage:nil status:@"网络未开通"];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

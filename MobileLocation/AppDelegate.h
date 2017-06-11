@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <AMapLocationKit/AMapLocationKit.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-
+/** <##> */
+@property(nonatomic,strong)AMapLocationManager *locationManager;
+- (void)startLocation;
 @end
 

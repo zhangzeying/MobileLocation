@@ -7,7 +7,8 @@
 //
 
 #import "RegisterViewController.h"
-
+#import "UserAgreementViewController.h"
+#import "AppDelegate.h"
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneTxt;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxt;
@@ -29,6 +30,12 @@
     [self.userAgreementBtn setTitleColor:[UIColor colorWithHexString:@"3f9ed9"] forState:UIControlStateNormal];
     [self.agreementBtn setTitleColor:[UIColor colorWithHexString:@"3f9ed9"] forState:UIControlStateNormal];
     self.navigationItem.title = @"注册";
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
 }
 
 - (IBAction)getVerifyCodeClick:(id)sender {
@@ -132,7 +139,10 @@
             [userDefaults setObject:self.phoneTxt.text forKey:@"username"];
             [userDefaults setObject:self.passwordTxt.text forKey:@"password"];
             [userDefaults setObject:authorizationState forKey:@"authorizationState"];
+            [userDefaults setObject:@(YES) forKey:@"isLogin"];
             [userDefaults synchronize];
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate startLocation];
             [self.navigationController popViewControllerAnimated:NO];
             
         } else {
@@ -154,6 +164,10 @@
     }];
 }
 - (IBAction)userAgreementClick:(id)sender {
+    
+    UserAgreementViewController *userAgreementVC = [[UserAgreementViewController alloc]init];
+    userAgreementVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:userAgreementVC animated:YES];
 }
 
 - (void)startTime {

@@ -7,7 +7,7 @@
 //
 
 #import "ParamsSettingViewController.h"
-
+#import "AuthorizationViewController.h"
 @interface ParamsSettingViewController ()
 
 @end
@@ -16,22 +16,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"参数设置";
+}
+- (IBAction)checkBoxClick:(UIButton *)sender {
+
+    sender.selected = !sender.selected;
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] isEqualToString:@"0"]) {
+        
+        AuthorizationViewController *authorizationVC = [[AuthorizationViewController alloc]init];
+        authorizationVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:authorizationVC animated:YES];
+        
+    } else {
+        
+        [SVProgressHUD showImage:nil status:@"网络未开通"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

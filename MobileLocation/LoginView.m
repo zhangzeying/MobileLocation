@@ -9,6 +9,7 @@
 #import "LoginView.h"
 #import "RegisterViewController.h"
 #import "ContactViewController.h"
+#import "AppDelegate.h"
 @interface LoginView ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneTxt;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxt;
@@ -22,6 +23,9 @@
     [self.phoneTxt setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordTxt setValue:[UIColor lightGrayColor] forKeyPath:@"_placeholderLabel.textColor"];
     self.loginBtn.backgroundColor = [UIColor colorWithHexString:@"3a9ddc"];
+    
+    self.phoneTxt.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    self.passwordTxt.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
 }
 
 + (LoginView *)instanceLoginView {
@@ -32,6 +36,7 @@
 
 - (IBAction)loginClick:(id)sender {
     
+    [self endEditing:YES];
     if (self.phoneTxt.text.length == 0) {
         
         [SVProgressHUD showErrorWithStatus:@"用户名不能为空！" maskType:SVProgressHUDMaskTypeBlack];
@@ -43,7 +48,7 @@
         [SVProgressHUD showErrorWithStatus:@"密码不能为空！" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }
-    
+    self.phoneTxt.text = [self.phoneTxt.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -64,7 +69,10 @@
             [userDefaults setObject:self.phoneTxt.text forKey:@"username"];
             [userDefaults setObject:self.passwordTxt.text forKey:@"password"];
             [userDefaults setObject:authorizationState forKey:@"authorizationState"];
+            [userDefaults setObject:@(YES) forKey:@"isLogin"];
             [userDefaults synchronize];
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate startLocation];
             [self removeFromSuperview];
             
         } else {
@@ -88,7 +96,9 @@
 
 - (IBAction)registerClick:(id)sender {
     
+    [self endEditing:YES];
     RegisterViewController *registerVC = [[RegisterViewController alloc]init];
+    registerVC.hidesBottomBarWhenPushed = YES;
     [self.vc.navigationController pushViewController:registerVC animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.hidden = YES;
@@ -97,7 +107,9 @@
 
 - (IBAction)contactClick:(id)sender {
     
+    [self endEditing:YES];
     ContactViewController *contactVC = [[ContactViewController alloc]init];
+    contactVC.hidesBottomBarWhenPushed = YES;
     [self.vc.navigationController pushViewController:contactVC animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.hidden = YES;
