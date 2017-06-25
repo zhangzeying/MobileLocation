@@ -9,7 +9,9 @@
 #import "CustomNavTitleView.h"
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
-@interface CustomNavTitleView ()<CNContactPickerDelegate>
+#import <AddressBookUI/AddressBookUI.h>
+#import <AddressBook/AddressBook.h>
+@interface CustomNavTitleView ()<CNContactPickerDelegate,ABPeoplePickerNavigationControllerDelegate>
 /** <##> */
 @property (nonatomic, weak)UIButton *dropMenuBtn;
 /** <##> */
@@ -108,11 +110,35 @@
 }
 
 - (void)addressBookClick {
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0f) {
+        
+        CNContactPickerViewController *picketVC = [[CNContactPickerViewController alloc] init];
+        picketVC.delegate = self;
+        picketVC.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
+        [self.vc presentViewController:picketVC animated:YES completion:nil];
+        
+    } else {
     
-    CNContactPickerViewController *picketVC = [[CNContactPickerViewController alloc] init];
-    picketVC.delegate = self;
-    picketVC.displayedPropertyKeys = @[CNContactPhoneNumbersKey];
-    [self.vc presentViewController:picketVC animated:YES completion:nil];
+        ABPeoplePickerNavigationController *pvc = [[ABPeoplePickerNavigationController alloc] init];
+        pvc.peoplePickerDelegate = self;
+        if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined)
+        {
+            ABAddressBookRef bookRef = ABAddressBookCreate();
+            ABAddressBookRequestAccessWithCompletion(bookRef, ^(bool granted, CFErrorRef error) {
+                if (granted)
+                {
+                    [self.vc presentViewController:pvc animated:YES completion:nil];
+                }
+            });
+        }
+        else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
+        {
+            [self.vc presentViewController:pvc animated:YES completion:nil];
+        }
+    }
+    
+
 }
 
 - (void)creatDropDownMenu {
@@ -175,5 +201,20 @@
     CNPhoneNumber *phoneNumer = contactProperty.value;
     self.phoneTxt.text = phoneNumer.stringValue;
     self.phoneTxt.text = [self.phoneTxt.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
+
+// 选择某个联系人时调用
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person
+{
+    ABMultiValueRef multi = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    CFIndex count = ABMultiValueGetCount(multi);
+    if (count > 0) {
+        
+        NSString *phone =(__bridge_transfer NSString *)  ABMultiValueCopyValueAtIndex(multi, 0);
+        self.phoneTxt.text = phone;
+        self.phoneTxt.text = [self.phoneTxt.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
+
+    }
+    
 }
 @end

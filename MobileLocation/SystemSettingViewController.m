@@ -12,6 +12,7 @@
 #import "ParamsSettingViewController.h"
 #import "UserAgreementViewController.h"
 #import "AppDelegate.h"
+#import "EvaluateViewController.h"
 @interface SystemSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 /** <##> */
 @property (nonatomic, weak)UITableView *tableView;
@@ -26,7 +27,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadState) name:@"ReloadState" object:nil];
     self.navigationItem.title = @"设置";
     self.view.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
-    self.dataArr = @[@{@"0":@[@"用户状态",@"用户名",@"修改密码",@"软件授权码",@"批量后台控制",@"高级设置",@"参数设置"]},@{@"1":@[@"联系我们",@"用户协议",@"版本"]}];
+    self.dataArr = @[@{@"0":@[@"软件评价",@"用户状态",@"用户名",@"修改密码",@"软件授权码",@"批量后台控制",@"高级设置",@"参数设置"]},@{@"1":@[@"联系我们",@"用户协议",@"版本"]}];
     UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -107,7 +108,7 @@
     contentLbl.font = [UIFont systemFontOfSize:15];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    if (indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 1) {
         
         contentLbl.textColor = [UIColor redColor];
         contentLbl.hidden = NO;
@@ -122,7 +123,7 @@
         [contentLbl sizeToFit];
         contentLbl.frame = CGRectMake(self.view.width - contentLbl.width - 30, 0, contentLbl.width, contentLbl.height);
         
-    } else if (indexPath.section == 0 && indexPath.row == 1) {
+    } else if (indexPath.section == 0 && indexPath.row == 2) {
     
         cell.accessoryType = UITableViewCellAccessoryNone;
         contentLbl.hidden = NO;
@@ -130,7 +131,7 @@
         [contentLbl sizeToFit];
         contentLbl.frame = CGRectMake(self.view.width - contentLbl.width - 18, 0, contentLbl.width, contentLbl.height);
         
-    }else if (indexPath.section == 0 && indexPath.row == 3) {
+    }else if (indexPath.section == 0 && indexPath.row == 4) {
         
         contentLbl.hidden = NO;
         contentLbl.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationCode"];
@@ -166,33 +167,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0 && indexPath.row == 0) {
-    
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] isEqualToString:@"0"]) {
         
+        EvaluateViewController *evaluateVC = [[EvaluateViewController alloc]init];
+        evaluateVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:evaluateVC animated:YES];
+        
+    } else if (indexPath.section == 0 && indexPath.row == 1) {
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] isEqualToString:@"0"]) {
+            
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"url1"]]];
             
         } else {
-        
+            
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"url2"]]];
         }
-    } else if ((indexPath.section == 0 && indexPath.row == 2)) {//修改密码
-    
+    } else if ((indexPath.section == 0 && indexPath.row == 3)) {//修改密码
+        
         [self dealAuthorizationState];
         
-    } else if (indexPath.section == 0 && indexPath.row == 3) {//软件授权码
+    } else if (indexPath.section == 0 && indexPath.row == 4) {//软件授权码
         
         AuthorizationViewController *authorizationVC = [[AuthorizationViewController alloc]init];
         authorizationVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:authorizationVC animated:YES];
         
-    } else if (indexPath.section == 0 && indexPath.row == 4) {//批量后台控制
+    } else if (indexPath.section == 0 && indexPath.row == 5) {//批量后台控制
         
         [self dealAuthorizationState];
         
-    } else if (indexPath.section == 0 && indexPath.row == 5) {//高级设置
+    } else if (indexPath.section == 0 && indexPath.row == 6) {//高级设置
         
         [self dealAuthorizationState];
-    } else if (indexPath.section == 0 && indexPath.row == 6) {//参数设置
+    } else if (indexPath.section == 0 && indexPath.row == 7) {//参数设置
         
         ParamsSettingViewController *paramsSettingVC = [[ParamsSettingViewController alloc]init];
         paramsSettingVC.hidesBottomBarWhenPushed = YES;
@@ -209,7 +216,15 @@
         UserAgreementViewController *userAgreementVC = [[UserAgreementViewController alloc]init];
         userAgreementVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userAgreementVC animated:YES];
+        
+    } else if (indexPath.section == 1 && indexPath.row == 3) {//评价
+        
+        EvaluateViewController *evaluateVC = [[EvaluateViewController alloc]init];
+        evaluateVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:evaluateVC animated:YES];
     }
+    
+    
 }
 
 - (void)quitClick {
@@ -240,6 +255,7 @@
 
     [self.tableView reloadData];
 }
+
 
 - (void)dealloc {
 

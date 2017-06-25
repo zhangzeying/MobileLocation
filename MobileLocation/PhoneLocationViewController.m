@@ -81,10 +81,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-    if (self.isFirst) {
-        self.isFirst = NO;
-        self.mapView.zoomLevel = 3;
-    }
+    
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue]) {
         
         if (!self.loginView) {
@@ -108,6 +105,15 @@
             [self.loginView removeFromSuperview];
             self.loginView = nil;
         }
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+    [super viewDidAppear:animated];
+    if (self.isFirst) {
+        self.isFirst = NO;
+        self.mapView.zoomLevel = 3;
     }
 }
 

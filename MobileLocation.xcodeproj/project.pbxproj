@@ -13,6 +13,9 @@
 		5A3E429F1EEC44E1001BEA12 /* ParamsSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A3E429D1EEC44E1001BEA12 /* ParamsSettingViewController.xib */; };
 		5A3E42A31EEC4AAF001BEA12 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E42A11EEC4AAF001BEA12 /* UserAgreementViewController.m */; };
 		5A51377A1EECE76200ECEA96 /* NewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5137791EECE76200ECEA96 /* NewFeatureController.m */; };
+		5A5AFBF71EFE377D00C5270A /* EvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AFBF51EFE377D00C5270A /* EvaluateViewController.m */; };
+		5A5AFBF81EFE377D00C5270A /* EvaluateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5AFBF61EFE377D00C5270A /* EvaluateViewController.xib */; };
+		5A5AFBFE1EFE3B2F00C5270A /* TggStarEvaluationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AFBFD1EFE3B2F00C5270A /* TggStarEvaluationView.m */; };
 		5A5F317A1EEBF78C002C484E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5F31791EEBF78C002C484E /* Utils.m */; };
 		5A5F317D1EEC00C4002C484E /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5F317C1EEC00C4002C484E /* ContactViewController.m */; };
 		5A6024031EE6E44B00BC7120 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6024021EE6E44B00BC7120 /* main.m */; };
@@ -67,6 +70,11 @@
 		5A3E42A11EEC4AAF001BEA12 /* UserAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAgreementViewController.m; sourceTree = "<group>"; };
 		5A5137781EECE76200ECEA96 /* NewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeatureController.h; sourceTree = "<group>"; };
 		5A5137791EECE76200ECEA96 /* NewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeatureController.m; sourceTree = "<group>"; };
+		5A5AFBF41EFE377D00C5270A /* EvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateViewController.h; sourceTree = "<group>"; };
+		5A5AFBF51EFE377D00C5270A /* EvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateViewController.m; sourceTree = "<group>"; };
+		5A5AFBF61EFE377D00C5270A /* EvaluateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluateViewController.xib; sourceTree = "<group>"; };
+		5A5AFBFC1EFE3B2F00C5270A /* TggStarEvaluationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TggStarEvaluationView.h; sourceTree = "<group>"; };
+		5A5AFBFD1EFE3B2F00C5270A /* TggStarEvaluationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TggStarEvaluationView.m; sourceTree = "<group>"; };
 		5A5F31781EEBF78C002C484E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		5A5F31791EEBF78C002C484E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		5A5F317B1EEC00C4002C484E /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
@@ -259,6 +267,9 @@
 				5A3E429D1EEC44E1001BEA12 /* ParamsSettingViewController.xib */,
 				5A3E42A01EEC4AAF001BEA12 /* UserAgreementViewController.h */,
 				5A3E42A11EEC4AAF001BEA12 /* UserAgreementViewController.m */,
+				5A5AFBF41EFE377D00C5270A /* EvaluateViewController.h */,
+				5A5AFBF51EFE377D00C5270A /* EvaluateViewController.m */,
+				5A5AFBF61EFE377D00C5270A /* EvaluateViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -266,6 +277,8 @@
 		5A60243E1EE6F1AD00BC7120 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5A5AFBFC1EFE3B2F00C5270A /* TggStarEvaluationView.h */,
+				5A5AFBFD1EFE3B2F00C5270A /* TggStarEvaluationView.m */,
 				5A7CD8ED1EEAF0E2008B87CB /* CustomNavTitleView.h */,
 				5A7CD8EE1EEAF0E2008B87CB /* CustomNavTitleView.m */,
 				5A80EDBB1EEBB88700D316A7 /* LoginView.h */,
@@ -435,6 +448,7 @@
 			files = (
 				5A6024111EE6E44B00BC7120 /* LaunchScreen.storyboard in Resources */,
 				5A3E429A1EEC3610001BEA12 /* AuthorizationViewController.xib in Resources */,
+				5A5AFBF81EFE377D00C5270A /* EvaluateViewController.xib in Resources */,
 				5A60240E1EE6E44B00BC7120 /* Assets.xcassets in Resources */,
 				5A80EDBF1EEBB89500D316A7 /* LoginView.xib in Resources */,
 				5A60245F1EE6F8B900BC7120 /* RegisterViewController.xib in Resources */,
@@ -514,6 +528,7 @@
 				5A6024391EE6E4DB00BC7120 /* UIView+Frame.m in Sources */,
 				5A3E42A31EEC4AAF001BEA12 /* UserAgreementViewController.m in Sources */,
 				5A6024431EE6F1F500BC7120 /* HomeTabBarController.m in Sources */,
+				5A5AFBF71EFE377D00C5270A /* EvaluateViewController.m in Sources */,
 				5A60244D1EE6F5C500BC7120 /* PhoneLocationViewController.m in Sources */,
 				5A5F317A1EEBF78C002C484E /* Utils.m in Sources */,
 				5A80EDBD1EEBB88700D316A7 /* LoginView.m in Sources */,
@@ -528,6 +543,7 @@
 				5A6024361EE6E4D500BC7120 /* UIColor+String.m in Sources */,
 				5A6024491EE6F29800BC7120 /* BaseViewController.m in Sources */,
 				5A5F317D1EEC00C4002C484E /* ContactViewController.m in Sources */,
+				5A5AFBFE1EFE3B2F00C5270A /* TggStarEvaluationView.m in Sources */,
 				5A6024531EE6F61600BC7120 /* MessageInterceptViewController.m in Sources */,
 				5A6024031EE6E44B00BC7120 /* main.m in Sources */,
 				5A51377A1EECE76200ECEA96 /* NewFeatureController.m in Sources */,
@@ -676,7 +692,7 @@
 				DEVELOPMENT_TEAM = VDKG4G5L34;
 				GCC_PREFIX_HEADER = "MobileLocation/MobileLocation-Prefix.pch";
 				INFOPLIST_FILE = MobileLocation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanmao.mobilelocation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -693,7 +709,7 @@
 				DEVELOPMENT_TEAM = VDKG4G5L34;
 				GCC_PREFIX_HEADER = "MobileLocation/MobileLocation-Prefix.pch";
 				INFOPLIST_FILE = MobileLocation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lanmao.mobilelocation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
