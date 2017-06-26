@@ -108,7 +108,23 @@
     contentLbl.font = [UIFont systemFontOfSize:15];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    if (indexPath.section == 0 && indexPath.row == 1) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        
+        UILabel *lbl1 = [[UILabel alloc]init];
+        lbl1.textColor = [UIColor redColor];
+        lbl1.font = [UIFont systemFontOfSize:15];
+        lbl1.text = @"4.9分  高";
+        [lbl1 sizeToFit];
+        lbl1.frame = CGRectMake(100, 0, lbl1.width, lbl1.height);
+        lbl1.centerY = 25;
+        [cell.contentView addSubview:lbl1];
+        
+        contentLbl.hidden = NO;
+        contentLbl.text = @"我要评价";
+        [contentLbl sizeToFit];
+        contentLbl.frame = CGRectMake(self.view.width - contentLbl.width - 25, 0, contentLbl.width, contentLbl.height);
+        
+    } else if (indexPath.section == 0 && indexPath.row == 1) {
         
         contentLbl.textColor = [UIColor redColor];
         contentLbl.hidden = NO;

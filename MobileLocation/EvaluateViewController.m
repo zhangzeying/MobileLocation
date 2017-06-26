@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *goodBtn;
 @property (weak, nonatomic) IBOutlet UIButton *middleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *badBtn;
+@property (weak, nonatomic) IBOutlet UILabel *stateLbl;
 /** <##> */
 @property(nonatomic,strong)UIButton *selectedBtn;
 @end
@@ -25,8 +26,29 @@
     self.navigationItem.title = @"软件评价";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(postClick)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor orangeColor];
-   
-    TggStarEvaluationView *tggStarEvaView = [TggStarEvaluationView evaluationViewWithChooseStarBlock:nil];
+    self.stateLbl.textColor = [UIColor orangeColor];
+    TggStarEvaluationView *tggStarEvaView = [TggStarEvaluationView evaluationViewWithChooseStarBlock:^(NSUInteger count) {
+        
+        switch (count) {
+            case 1:
+                self.stateLbl.text = @"非常差";
+                break;
+            case 2:
+                self.stateLbl.text = @"差";
+                break;
+            case 3:
+                self.stateLbl.text = @"一般";
+                break;
+            case 4:
+                self.stateLbl.text = @"好";
+                break;
+            case 5:
+                self.stateLbl.text = @"非常好";
+                break;
+            default:
+                break;
+        }
+    }];
     tggStarEvaView.frame = CGRectMake(CGRectGetMaxX(self.descriptionlbl.frame) + 5, 0, 23 * 10, 45);
     tggStarEvaView.centerY = self.descriptionlbl.centerY;
     [self.view addSubview:tggStarEvaView];
