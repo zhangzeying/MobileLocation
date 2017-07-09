@@ -9,6 +9,7 @@
 #import "EvaluateViewController.h"
 #import "TggStarEvaluationView.h"
 #import "AuthorizationViewController.h"
+
 @interface EvaluateViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *descriptionlbl;
 @property (weak, nonatomic) IBOutlet UIButton *goodBtn;

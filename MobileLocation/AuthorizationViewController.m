@@ -94,7 +94,8 @@
 
 - (IBAction)buyClick:(id)sender {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"url1"]]];
+    NSString *url = [[NSUserDefaults standardUserDefaults] objectForKey:@"url1"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 - (IBAction)contactClick:(id)sender {
