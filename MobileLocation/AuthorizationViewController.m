@@ -8,9 +8,10 @@
 
 #import "AuthorizationViewController.h"
 #import "ContactViewController.h"
+#import "BuyViewController.h"
 @interface AuthorizationViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *authorizationCodeTxt;
-@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *questionBtn;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *contactBtn;
 @property (weak, nonatomic) IBOutlet UIView *line;
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.line.backgroundColor = [UIColor colorWithHexString:@"3f9ed9"];
-    [self.questionBtn setTitleColor:[UIColor colorWithHexString:@"3f9ed9"] forState:UIControlStateNormal];
+//    [self.questionBtn setTitleColor:[UIColor colorWithHexString:@"3f9ed9"] forState:UIControlStateNormal];
     [self.buyBtn setTitleColor:[UIColor colorWithHexString:@"3f9ed9"] forState:UIControlStateNormal];
     [self.contactBtn setTitleColor:[UIColor colorWithHexString:@"3f9ed9"] forState:UIControlStateNormal];
     self.navigationItem.title = @"授权码";
@@ -86,16 +87,44 @@
     }];
 }
 
-- (IBAction)questionClick:(id)sender {
-    
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"软件授权码是激活本软件系统的一个激活码，本软件系统是付费软件系统，付费后自动生成授权码发送到您注册本软件系统的手机号码上，然后输入授权码后本软件系统即可授权，只需要知道对方号码即可对此号码随时随地的监控，且被监控者毫不知情" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
-    [alertView show];
-}
+//- (IBAction)questionClick:(id)sender {
+//    
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"软件授权码是激活本软件系统的一个激活码，本软件系统是付费软件系统，付费后自动生成授权码发送到您注册本软件系统的手机号码上，然后输入授权码后本软件系统即可授权，只需要知道对方号码即可对此号码随时随地的监控，且被监控者毫不知情" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil];
+//    [alertView show];
+//}
 
 - (IBAction)buyClick:(id)sender {
     
-    NSString *url = [[NSUserDefaults standardUserDefaults] objectForKey:@"url1"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    manager.requestSerializer.timeoutInterval = 15.0f;
+    [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    NSString *urlStr = [Utils getUrl:@"/order/buyGoods"];
+    
+    NSDictionary *parameters = @{@"productId":@"1"};
+    [SVProgressHUD show];
+    [manager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [SVProgressHUD dismiss];
+        NSDictionary *dict = responseObject;
+        if ([dict[@"flag"] integerValue] == 1) {
+            
+            BuyViewController *buyVC = [[BuyViewController alloc]initWithDictionary:dict[@"result"]];
+            buyVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:buyVC animated:YES];
+            
+        } else {
+            
+            NSString *url = [[NSUserDefaults standardUserDefaults] objectForKey:@"url1"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [SVProgressHUD showErrorWithStatus:@"网络异常" maskType:SVProgressHUDMaskTypeBlack];
+    }];
 }
 
 - (IBAction)contactClick:(id)sender {

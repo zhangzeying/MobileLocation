@@ -38,6 +38,7 @@
 		5A7CD8EF1EEAF0E2008B87CB /* CustomNavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CD8EE1EEAF0E2008B87CB /* CustomNavTitleView.m */; };
 		5A80EDBD1EEBB88700D316A7 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A80EDBC1EEBB88700D316A7 /* LoginView.m */; };
 		5A80EDBF1EEBB89500D316A7 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A80EDBE1EEBB89500D316A7 /* LoginView.xib */; };
+		5AA2671E1F12834B002DA277 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2671D1F12834B002DA277 /* BuyViewController.m */; };
 		ADD4E11A886C0EF606067F8F /* libPods-MobileLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E15D457065ECB759019CE7 /* libPods-MobileLocation.a */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,8 @@
 		5A8F49AA1F0F66EB00A59BE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A8F49AC1F0F66F100A59BE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5A8F49AE1F0F66F700A59BE6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		5AA2671C1F12834B002DA277 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyViewController.h; sourceTree = "<group>"; };
+		5AA2671D1F12834B002DA277 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
 		C4E3B8B53C10921A154873FF /* Pods-MobileLocation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileLocation.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileLocation/Pods-MobileLocation.release.xcconfig"; sourceTree = "<group>"; };
 		E7E15D457065ECB759019CE7 /* libPods-MobileLocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileLocation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -281,6 +284,8 @@
 				5A5AFBF41EFE377D00C5270A /* EvaluateViewController.h */,
 				5A5AFBF51EFE377D00C5270A /* EvaluateViewController.m */,
 				5A5AFBF61EFE377D00C5270A /* EvaluateViewController.xib */,
+				5AA2671C1F12834B002DA277 /* BuyViewController.h */,
+				5AA2671D1F12834B002DA277 /* BuyViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				5A6024531EE6F61600BC7120 /* MessageInterceptViewController.m in Sources */,
 				5A6024031EE6E44B00BC7120 /* main.m in Sources */,
 				5A51377A1EECE76200ECEA96 /* NewFeatureController.m in Sources */,
+				5AA2671E1F12834B002DA277 /* BuyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

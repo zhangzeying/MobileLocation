@@ -13,6 +13,7 @@
 #import "UserAgreementViewController.h"
 #import "AppDelegate.h"
 #import "EvaluateViewController.h"
+#import "BuyViewController.h"
 @interface SystemSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 /** <##> */
 @property (nonatomic, weak)UITableView *tableView;
@@ -190,14 +191,48 @@
         
     } else if (indexPath.section == 0 && indexPath.row == 1) {
         
+        NSString *productId;
+        NSString *url;
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"authorizationState"] isEqualToString:@"0"]) {
-            
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"url1"]]];
+            productId = @"1";
+            url = [[NSUserDefaults standardUserDefaults] objectForKey:@"url1"];
             
         } else {
             
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"url2"]]];
+            productId = @"2";
+            url = [[NSUserDefaults standardUserDefaults] objectForKey:@"url2"];
         }
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+        manager.requestSerializer.timeoutInterval = 15.0f;
+        [manager.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+        NSString *urlStr = [Utils getUrl:@"/order/buyGoods"];
+        NSDictionary *parameters = @{@"productId":productId};
+        [SVProgressHUD show];
+        [manager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            [SVProgressHUD dismiss];
+            NSDictionary *dict = responseObject;
+            if ([dict[@"flag"] integerValue] == 1) {
+                
+                BuyViewController *buyVC = [[BuyViewController alloc]initWithDictionary:dict[@"result"]];
+                buyVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:buyVC animated:YES];
+                
+            } else {
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+            [SVProgressHUD showErrorWithStatus:@"网络异常" maskType:SVProgressHUDMaskTypeBlack];
+        }];
+        
+        
     } else if ((indexPath.section == 0 && indexPath.row == 3)) {//修改密码
         
         [self dealAuthorizationState];
